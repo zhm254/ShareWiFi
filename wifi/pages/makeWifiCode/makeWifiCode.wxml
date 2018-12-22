@@ -1,0 +1,7 @@
+<view>
+  <input placeholder='请输入WiFi的名称' class='input-style'></input>
+  <input placeholder='请输入WiFi的密码' class='input-style'></input>
+</view>
+<view>
+  <button class='get-code'>获取WiFi码</button>
+</view>

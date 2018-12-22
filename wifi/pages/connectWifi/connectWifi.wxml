@@ -1,0 +1,32 @@
+<view>
+  <view wx:if="{{flag===2}}">
+    <view class="title">欢迎体验扫码连WiFi</view>
+    <button class='unlock-button' bindtap="unlockWiFi">识别解锁WiFi</button>
+  </view>
+  <view wx:if="{{flag===1}}" class='connectedWifi-view'>
+    <view>WiFi已连接</view>
+    <view class='connectedWifi'>{{connectedWifi}}</view>
+    <button class='connectedWifi-button' bindtap="changeWiFi">换个WiFi</button>
+    <button class='connectedWifi-button'>分享WiFi</button>
+  </view>
+  <view>
+    <view class='choose-wifi' wx:if="{{flag===3}}">请点击你想要连接的WiFi</view>
+    <view class='unlock-more' wx:if="{{flag===3}}" bindtap="unlockMore">识别更多解锁WiFi</view>
+    <view wx:for="{{wifiList}}" wx:key="index" wx:if="{{flag===3}}">
+      <view class='ssid-style' bindtap="connectWiFi" data-item='{{item}}' hover-class='ssid-hover' hover-stay-time='50'>{{item.SSID}}
+      </view>
+    </view>
+  </view>
+  <view class="modal-dialog" wx:if="{{flag===3&&showModal===true}}">
+    <view class="modal-title">{{ssid}}</view>
+    <view class="modal-content">
+      <view class="modal-input">
+        <input placeholder-class="input-holder" class="input" placeholder='请输入WiFi密码' bindinput='inputChange'></input>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="cancel">取消</view>
+      <view class="btn-confirm" bindtap="confirm" data-wifi='{{wifi}}'>确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+.title {
+  text-align: center;
+}
+
+.row-style {
+  background-color: #ccc;
+  margin: 10rpx 10rpx 0 10rpx;
+  padding-left: 10rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.connect-button {
+  width: 50%;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 40rpx;
+  background-color: #1296db;
+  color: #fff;
+  font-size: 30rpx;
+}

@@ -1,0 +1,11 @@
+.input-style {
+  margin: 40rpx;
+  padding: 10rpx 0;
+  border-bottom: 4rpx solid #ddd;
+}
+
+.get-code {
+  background-color: #1296db;
+  color: #fff;
+  margin: 0 40rpx;
+}

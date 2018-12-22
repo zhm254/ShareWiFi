@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/connectWifi/connectWifi",
+    "pages/makeWifiCode/makeWifiCode",
+    "pages/unlock/unlock"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "扫码连WiFi",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1296DB",
+    "list": [
+      {
+        "pagePath": "pages/connectWifi/connectWifi",
+        "text": "连接WiFi"
+      },
+      {
+        "pagePath": "pages/makeWifiCode/makeWifiCode",
+        "text": "制作WiFi码"
+      }
+    ]
+  }
+}

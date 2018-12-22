@@ -1,0 +1,16 @@
+<view>
+  <view class='title'>完成以下4步，就可以解锁附近的WiFi了</view>
+  <view class='row-style'>
+    <text>1.点击左上角“设置”返回设置列表</text>
+  </view>
+  <view class='row-style'>
+    <text>2.从设置列表顶部进入“无线局域网”</text>
+  </view>
+  <view class='row-style'>
+    <text>3.等待WiFi列表刷新</text>
+  </view>
+  <view class='row-style'>
+    <text>4.返回小程序，点击连接</text>
+  </view>
+  <button class='connect-button' bindtap="getWifiList">看懂了，去连接</button>
+</view>
