@@ -136,19 +136,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log("onshow");
-    var app = getApp();
-    for (var i = 0; i < app.wifiList.length; i++) {
-      if (app.wifiList[i].SSID != '') {
-        this.data.wifiList.push(app.wifiList[i]);
-        this.setData({
-          wifiList: this.data.wifiList
-        });
-      }
-    }
-
-
-
+    //console.log("onshow");
     wx.getConnectedWifi({
       success: (res) => {
         //console.log(res);
@@ -161,14 +149,34 @@ Page({
         this.setData({
           connectedWifi: this.data.connectedWifi
         });
-        if (this.data.wifiList.length != 0) {
-          this.data.wifiList.length = 0;
+        console.log(this.data.wifiList);
+        if (this.data.wifiList != []) {
+          this.data.wifiList = [];
           this.setData({
             wifiList: this.data.wifiList
           });
+          console.log(this.data.wifiList);
         }
+        console.log(getApp().wifiList);
+        if (getApp().wifiList != []) {
+          getApp().wifiList = [];
+          this.setData({
+            wifiList: getApp().wifiList
+          });
+          console.log(getApp().wifiList);
+        }
+
       },
       fail: () => {
+        var app = getApp();
+        for (var i = 0; i < app.wifiList.length; i++) {
+          if (app.wifiList[i].SSID != '') {
+            this.data.wifiList.push(app.wifiList[i]);
+            this.setData({
+              wifiList: this.data.wifiList
+            });
+          }
+        }
         //console.log("fail");
         if (this.data.wifiList.length === 0) {
           this.data.flag = 2;
@@ -176,7 +184,6 @@ Page({
             flag: this.data.flag
           });
         } else {
-
           this.data.flag = 3;
           this.setData({
             flag: this.data.flag
