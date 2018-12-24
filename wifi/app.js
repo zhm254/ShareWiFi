@@ -1,4 +1,13 @@
-//app.js
+const api = require('./utils/api.js')
 App({
-  wifiList: []
+  globalData: {
+    wifiList: [],
+
+  },
+
+
+
+  onLaunch: function() {
+    api.login();
+  },
 })

@@ -149,29 +149,29 @@ Page({
         this.setData({
           connectedWifi: this.data.connectedWifi
         });
-        console.log(this.data.wifiList);
+        //console.log(this.data.wifiList);
         if (this.data.wifiList != []) {
           this.data.wifiList = [];
           this.setData({
             wifiList: this.data.wifiList
           });
-          console.log(this.data.wifiList);
+          //console.log(this.data.wifiList);
         }
-        console.log(getApp().wifiList);
-        if (getApp().wifiList != []) {
-          getApp().wifiList = [];
+        //console.log(getApp().globalData.wifiList);
+        if (getApp().globalData.wifiList != []) {
+          getApp().globalData.wifiList = [];
           this.setData({
-            wifiList: getApp().wifiList
+            wifiList: getApp().globalData.wifiList
           });
-          console.log(getApp().wifiList);
+          //console.log(getApp().globalData.wifiList);
         }
 
       },
       fail: () => {
         var app = getApp();
-        for (var i = 0; i < app.wifiList.length; i++) {
-          if (app.wifiList[i].SSID != '') {
-            this.data.wifiList.push(app.wifiList[i]);
+        for (var i = 0; i < app.globalData.wifiList.length; i++) {
+          if (app.globalData.wifiList[i].SSID != '') {
+            this.data.wifiList.push(app.globalData.wifiList[i]);
             this.setData({
               wifiList: this.data.wifiList
             });
