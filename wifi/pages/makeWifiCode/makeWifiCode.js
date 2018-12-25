@@ -5,9 +5,58 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    wifiName: '',
+    wifiPw: ''
   },
-
+  inputChange: function(e) {
+    // console.log(e);
+    // console.log(this);
+    if (e.currentTarget.dataset.type === 'wifiName') {
+      this.data.wifiName = e.detail.value;
+      this.setData({
+        wifiName: this.data.wifiName
+      });
+    } else if (e.currentTarget.dataset.type === 'wifiPw') {
+      this.data.wifiPw = e.detail.value;
+      this.setData({
+        wifiPw: this.data.wifiPw
+      });
+    }
+    // console.log(this.data.wifiName + 'name');
+    // console.log(this.data.wifiPw + 'pw');
+    // console.log(typeof(this.data.wifiName));
+    // console.log(typeof(this.data.wifiPw));
+    // console.log(this.data.wifiPw.length);
+  },
+  getWiFiCode: function() {
+    if (this.data.wifiName == '') {
+      wx.showToast({
+        title: 'WiFi名称不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+    } else if (this.data.wifiPw.length < 8) {
+      wx.showToast({
+        title: '密码长度需不少于8位',
+        icon: 'none',
+        duration: 2000
+      })
+    } else if (this.data.wifiName != '' && this.data.wifiPw.length >= 8) {
+      wx.request({
+        url: 'https://wifi.cou8123.cn/api/wxapp/public/getWXACode',
+        data: {
+          ssid: this.data.wifiName,
+          password: this.data.wifiPw,
+          bssid: '',
+          user_id: '',
+        },
+        method: 'POST',
+        success(res) {
+          console.log(res);
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,7 +1,8 @@
 <view>
-  <input placeholder='请输入WiFi的名称' class='input-style'></input>
-  <input placeholder='请输入WiFi的密码' class='input-style'></input>
+  <input placeholder='请输入WiFi的名称' class='input-style' data-type='wifiName' bindinput='inputChange'></input>
+  <input placeholder='请输入WiFi的密码(无密码可不填)' class='input-style' data-type='wifiPw' bindinput='inputChange'></input>
 </view>
 <view>
-  <button class='get-code'>获取WiFi码</button>
+  <button class='get-code' bindtap='getWiFiCode'>获取WiFi码</button>
+  <!-- <navigator url="../scanCodeEntered/scanCodeEntered">tiaozhuan</navigator> -->
 </view>

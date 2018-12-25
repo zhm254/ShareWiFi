@@ -101,7 +101,7 @@ module.exports = {
                   signature: res.signature
                 },
                 success: data => {
-                  console.log(data); //
+                  console.log(data);
                   if (data.code == 1) {
                     wx.showToast({
                       title: '登录成功!',
@@ -146,11 +146,8 @@ module.exports = {
                   }
                 });
               }
-
             }
-          });
-
-
+          })
         } else {
           tryingLogin = false;
         }

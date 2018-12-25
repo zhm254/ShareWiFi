@@ -66,6 +66,27 @@ Page({
             //console.log(res.errMsg);
             wx.getConnectedWifi({
               success: () => {
+                var ssid = e.currentTarget.dataset.wifi.SSID;
+                var bssid = e.currentTarget.dataset.wifi.BSSID;
+                var password = this.data.WiFiPassword;
+                // console.log(ssid);
+                // console.log(bssid);
+                // console.log(password);
+                // console.log(typeof ssid);
+                // console.log(typeof bssid);
+                // console.log(typeof password);
+                wx.request({
+                  url: 'https://wifi.cou8123.cn/api/wxapp/public/connectwifi',
+                  data: {
+                    ssid: ssid,
+                    bssid: bssid,
+                    password: password
+                  },
+                  method: 'POST',
+                  success: (res) => {
+                    console.log(res)
+                  }
+                })
                 //console.log(this);
                 wx.showToast({
                   title: 'WiFi连接成功',
