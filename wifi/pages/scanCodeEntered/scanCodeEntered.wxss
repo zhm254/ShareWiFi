@@ -1,1 +1,19 @@
-/* pages/scanCodeEntered/scanCodeEntered.wxss */
+.outer-container {
+  text-align: center;
+  margin-top: 80rpx;
+}
+
+.welcome-text {
+  margin-bottom: 40rpx;
+}
+
+.wifi-name {
+  font-weight: bold;
+  margin: 40rpx 0;
+}
+
+.connect-button {
+  width: 60%;
+  background-color: #33ca01;
+  color: white;
+}

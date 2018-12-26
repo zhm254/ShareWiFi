@@ -5,7 +5,16 @@
 }
 
 .get-code {
-  background-color: #1296db;
+  background-color: #33ca01;
   color: #fff;
   margin: 0 40rpx;
+}
+
+.explain-text {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.made-wifiCode {
+  margin: 40rpx 0 80rpx 40rpx;
 }

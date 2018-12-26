@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/makeWifiCode/makeWifiCode",
+    "pages/scanCodeEntered/scanCodeEntered",
+    "pages/WiFiCode/WiFiCode",
     "pages/connectWifi/connectWifi",
     "pages/unlock/unlock",
-    "pages/tologin/tologin",
-    "pages/scanCodeEntered/scanCodeEntered"
+    "pages/tologin/tologin"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,7 +15,7 @@
   },
   "tabBar": {
     "color": "#000000",
-    "selectedColor": "#1296DB",
+    "selectedColor": "#33CA01",
     "list": [
       {
         "pagePath": "pages/connectWifi/connectWifi",

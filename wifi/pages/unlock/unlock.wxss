@@ -15,7 +15,7 @@
   height: 70rpx;
   line-height: 70rpx;
   margin-top: 40rpx;
-  background-color: #1296db;
+  background-color: #33ca01;
   color: #fff;
   font-size: 30rpx;
 }

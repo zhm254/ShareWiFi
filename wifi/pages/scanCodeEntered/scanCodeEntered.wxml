@@ -1,0 +1,11 @@
+<!-- <view style="width:100%;position:relative;height:400rpx;background:gray;">
+  <official-account style="position:absolute;top:0;width:81%;height:168rpx;border:1rpx solid black;"></official-account>
+</view> -->
+<view class='outer-container'>
+  <view class='welcome-text'>欢迎体验扫码连WiFi</view>
+  <view>发现WiFi</view>
+  <view class='wifi-name'>{{ssid}}</view>
+  <view>
+    <button class='connect-button' bindtap="connectWiFi">立即连接</button>
+  </view>
+</view>

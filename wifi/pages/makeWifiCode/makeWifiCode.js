@@ -35,24 +35,66 @@ Page({
         icon: 'none',
         duration: 2000
       })
-    } else if (this.data.wifiPw.length < 8) {
-      wx.showToast({
-        title: '密码长度需不少于8位',
-        icon: 'none',
-        duration: 2000
-      })
-    } else if (this.data.wifiName != '' && this.data.wifiPw.length >= 8) {
+    } else if (this.data.wifiName != '' && this.data.wifiPw != '') {
+      if (this.data.wifiPw.length < 8) {
+        wx.showToast({
+          title: '密码长度需不少于8位',
+          icon: 'none',
+          duration: 2000
+        })
+      } else if (this.data.wifiPw.length >= 8) {
+        wx.request({
+          url: 'https://wifi.cou8123.cn/api/wxapp/public/getWXACode',
+          data: {
+            ssid: this.data.wifiName,
+            password: this.data.wifiPw,
+            bssid: '', //可选的
+            user_id: '', //可选的，openid
+          },
+          method: 'POST',
+          success: (res) => {
+            //console.log(res);
+            var WiFidata = res.data;
+            wx.navigateTo({
+              url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName
+            })
+            this.data.wifiName = '';
+            this.setData({
+              wifiName: this.data.wifiName
+            });
+            this.data.wifiPw = '';
+            this.setData({
+              wifiPw: this.data.wifiPw
+            });
+          }
+        })
+
+      }
+    } else if (this.data.wifiName != '' && this.data.wifiPw.length === 0) {
       wx.request({
         url: 'https://wifi.cou8123.cn/api/wxapp/public/getWXACode',
         data: {
           ssid: this.data.wifiName,
           password: this.data.wifiPw,
-          bssid: '',
-          user_id: '',
+          bssid: '', //可选的
+          user_id: '', //可选的，openid
         },
         method: 'POST',
-        success(res) {
-          console.log(res);
+        success: (res) => {
+          //console.log(res);
+          var WiFidata = res.data;
+          wx.navigateTo({
+            url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName
+          })
+          this.data.wifiName = '';
+          this.setData({
+            wifiName: this.data.wifiName
+          });
+          this.data.wifiPw = '';
+          this.setData({
+            wifiPw: this.data.wifiPw
+          });
+
         }
       })
     }

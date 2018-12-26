@@ -5,24 +5,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    ssid: '',
+    password: ''
   },
-
+  connectWiFi: function() {
+    wx.startWifi({
+      success: () => {
+        wx.connectWifi({
+          SSID: this.data.ssid,
+          password: this.data.password,
+          success: () => {
+            wx.getConnectedWifi({
+              success: () => {
+                wx.switchTab({
+                  url: '../connectWifi/connectWifi'
+                })
+              }
+            })
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const scene = decodeURIComponent(query.scene);
-    // var scene = 6;
-    console.log(scene);
+    // const scene = decodeURIComponent(query.scene);
+    var scene = 6;
+    // console.log(scene);
+    // console.log(typeof scene);
     wx.request({
       url: 'https://wifi.cou8123.cn/api/wxapp/public/getwfinfo',
       data: {
         id: scene
       },
       method: 'POST',
-      success(res) {
+      success: (res) => {
         console.log(res);
+        this.data.ssid = res.data.data.data.ssid;
+        this.setData({
+          ssid: this.data.ssid
+        });
+        this.data.password = res.data.data.data.pw;
+        this.setData({
+          password: this.data.password
+        });
+        console.log(this.data.ssid);
+        console.log(this.data.password);
       }
     })
   },
