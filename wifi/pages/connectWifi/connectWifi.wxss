@@ -1,42 +1,38 @@
 .title {
   text-align: center;
+  margin-top: 100rpx;
 }
 
 .unlock-button {
   width: 50%;
-  height: 70rpx;
-  line-height: 70rpx;
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   background-color: #33ca01;
   color: #fff;
-  font-size: 30rpx;
 }
 
 .connectedWifi-view {
   text-align: center;
+  padding-top: 40rpx;
 }
 
 .connectedWifi {
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   font-weight: bold;
 }
 
 .connectedWifi-button {
   width: 50%;
-  height: 70rpx;
-  line-height: 70rpx;
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   background-color: #33ca01;
   color: #fff;
-  font-size: 30rpx;
 }
 
 .ssid-style {
   background-color: #ccc;
   margin: 10rpx 10rpx 0 10rpx;
   padding-left: 10rpx;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 120rpx;
+  line-height: 120rpx;
 }
 
 .ssid-hover {
@@ -44,8 +40,8 @@
   color: #fff;
   margin: 10rpx 10rpx 0 10rpx;
   padding-left: 10rpx;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 120rpx;
+  line-height: 120rpx;
 }
 
 .choose-wifi {
@@ -54,25 +50,25 @@
 
 .unlock-more {
   width: 50%;
-  height: 70rpx;
-  line-height: 70rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   margin: 30rpx auto;
   background-color: #33ca01;
   color: #fff;
-  font-size: 30rpx;
+  font-size: 40rpx;
   border-radius: 10rpx;
   text-align: center;
 }
 
 .modal-dialog {
-  width: 540rpx;
+  width: 560rpx;
   overflow: hidden;
   position: fixed;
   top: 50%;
   left: 0;
   z-index: 9999;
   background: #fff;
-  margin: -350rpx 105rpx;
+  margin: -300rpx 105rpx;
   border-radius: 36rpx;
 }
 
@@ -91,14 +87,14 @@
   background: #fff;
   border-bottom: 2rpx solid #ddd;
   border-radius: 4rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
 .input {
   width: 100%;
   height: 82rpx;
-  font-size: 28rpx;
-  line-height: 28rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
   padding: 0 20rpx;
   box-sizing: border-box;
   color: #333;
@@ -106,16 +102,16 @@
 
 input-holder {
   color: #666;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
 .modal-footer {
   display: flex;
   flex-direction: row;
-  height: 86rpx;
+  height: 90rpx;
   border-top: 1px solid #dedede;
-  font-size: 34rpx;
-  line-height: 86rpx;
+  font-size: 36rpx;
+  line-height: 90rpx;
 }
 
 .btn-cancel {

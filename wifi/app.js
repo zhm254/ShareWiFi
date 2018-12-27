@@ -25,6 +25,37 @@ App({
     //     })
     //   }
     // })
-
   },
+  onShow: function() {
+    if (!(wx.getStorageSync('openid'))) {
+      wx.login({
+        success(res) {
+          if (res.code) {
+            // console.log(res);
+            // console.log(res.code);
+            // console.log(typeof(res.code));
+            wx.request({
+              url: 'https://wifi.cou8123.cn/api/wxapp/public/login',
+              data: {
+                code: res.code
+              },
+              method: 'POST',
+              success: (res) => {
+                //console.log(res);
+                var data = JSON.parse(res.data.data);
+                // console.log(data);
+                // console.log(data.openid);
+                // console.log(typeof(data.openid));
+                wx.setStorageSync('openid', data.openid);
+                //console.log(wx.getStorageSync('openid'));
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg);
+          }
+        }
+      })
+    }
+
+  }
 })

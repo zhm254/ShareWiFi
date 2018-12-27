@@ -7,7 +7,53 @@ Page({
     wifiCode: '',
     wifiName: ''
   },
+  saveCode: function(e) {
+    //console.log(e);
+    wx.getImageInfo({
+      src: e.currentTarget.dataset.wificode,
+      success: (res) => {
+        //console.log(res)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success: (res) => {
+            //console.log(res);
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+          fail: (res) => {
+            //console.log(res);
+            wx.getSetting({
+              success: (res) => {
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.showModal({
+                    title: '扫码连WiFi提醒您',
+                    content: '保存到相册失败，需要获取您的授权才能保存哦',
+                    showCancel: false,
+                    success: (res) => {
+                      if (res.confirm) {
+                        //console.log('用户点击确定');
+                        wx.openSetting({
+                          success: (res) => {
+                            //console.log(res.authSetting);
+                          }
+                        })
+                      }
+                    }
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    })
 
+
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */

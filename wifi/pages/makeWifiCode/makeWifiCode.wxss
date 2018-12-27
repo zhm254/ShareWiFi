@@ -16,5 +16,13 @@
 }
 
 .made-wifiCode {
-  margin: 40rpx 0 80rpx 40rpx;
+  margin: 40rpx 40rpx 160rpx 40rpx;
+  display: flex;
+  color: #33ca01;
+}
+
+.arrow {
+  font-size: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
 }

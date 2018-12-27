@@ -10,16 +10,35 @@ Page({
   },
   connectWiFi: function() {
     wx.startWifi({
-      success: () => {
+      success: (res) => {
+        //console.log(res);
         wx.connectWifi({
           SSID: this.data.ssid,
           password: this.data.password,
-          success: () => {
+          success: (res) => {
+            wx.showLoading({
+              title: '连接中',
+            })
+            //console.log(res);
             wx.getConnectedWifi({
               success: () => {
+                //wx.hideLoading();
+                wx.showToast({
+                  title: '连接成功',
+                  icon: 'success',
+                  duration: 3000
+                })
                 wx.switchTab({
                   url: '../connectWifi/connectWifi'
                 })
+              },
+              fail: () => {
+                wx.hideLoading();
+                setTimeout(() => {
+                  wx.switchTab({
+                    url: '../connectWifi/connectWifi'
+                  })
+                }, 3000)
               }
             })
           }
@@ -30,9 +49,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    // const scene = decodeURIComponent(query.scene);
-    var scene = 6;
+  onLoad: function(query) {
+    var scene = decodeURIComponent(query.scene);
+    // var scene = 6;
     // console.log(scene);
     // console.log(typeof scene);
     wx.request({
@@ -42,7 +61,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res);
+        //console.log(res);
         this.data.ssid = res.data.data.data.ssid;
         this.setData({
           ssid: this.data.ssid
@@ -51,8 +70,10 @@ Page({
         this.setData({
           password: this.data.password
         });
-        console.log(this.data.ssid);
-        console.log(this.data.password);
+        //console.log(this.data.ssid);
+        //console.log(this.data.password);
+        // console.log(typeof(this.data.ssid));
+        // console.log(typeof(this.data.password));
       }
     })
   },

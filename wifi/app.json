@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/makeWifiCode/makeWifiCode",
-    "pages/scanCodeEntered/scanCodeEntered",
-    "pages/WiFiCode/WiFiCode",
     "pages/connectWifi/connectWifi",
     "pages/unlock/unlock",
-    "pages/tologin/tologin"
+    "pages/makeWifiCode/makeWifiCode",
+    "pages/WiFiCode/WiFiCode",
+    "pages/scanCodeEntered/scanCodeEntered",
+    "pages/tologin/tologin",
+    "pages/madeWiFiCode/madeWiFiCode"
   ],
   "window": {
     "backgroundTextStyle": "light",

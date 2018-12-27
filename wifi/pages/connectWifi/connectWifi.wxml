@@ -7,7 +7,7 @@
     <view>WiFi已连接</view>
     <view class='connectedWifi'>{{connectedWifi}}</view>
     <button class='connectedWifi-button' bindtap="changeWiFi">换个WiFi</button>
-    <button class='connectedWifi-button'>分享WiFi</button>
+    <!-- <button class='connectedWifi-button'>通过WiFi码分享</button> -->
   </view>
   <view>
     <view class='choose-wifi' wx:if="{{flag===3}}">请点击你想要连接的WiFi</view>
