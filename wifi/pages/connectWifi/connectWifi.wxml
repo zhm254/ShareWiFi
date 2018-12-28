@@ -25,8 +25,12 @@
       </view>
     </view>
     <view class="modal-footer">
-      <view class="btn-cancel" bindtap="cancel">取消</view>
-      <view class="btn-confirm" bindtap="confirm" data-wifi='{{wifi}}'>确定</view>
+      <view class="btn-cancel-view">
+        <button bindtap="cancel" class='btn-style'>取消</button>
+      </view>
+      <view class="btn-confirm-view">
+        <button bindtap="confirm" data-wifi='{{wifi}}' class='btn-style' disabled='{{isdisabled}}'>确定</button>
+      </view>
     </view>
   </view>
 </view>

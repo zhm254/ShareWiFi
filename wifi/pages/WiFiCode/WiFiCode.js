@@ -5,8 +5,10 @@ Page({
    */
   data: {
     wifiCode: '',
-    wifiName: ''
+    wifiName: '',
+    wifiPw: ''
   },
+
   saveCode: function(e) {
     //console.log(e);
     wx.getImageInfo({
@@ -71,6 +73,10 @@ Page({
     this.setData({
       wifiName: this.data.wifiName
     });
+    this.data.wifiPw = options.wifiPw;
+    this.setData({
+      wifiPw: this.data.wifiPw
+    });
   },
 
   /**
@@ -118,7 +124,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    return {
+      title: '邀请你连WiFi',
+      path: '/pages/shareEntered/shareEntered?wifiName=' + this.data.wifiName + '&wifiPw=' + this.data.wifiPw,
+      success: (res) => {
+        wx.showToast({
+          title: "分享成功",
+          icon: 'success',
+          duration: 2000
+        })
+      },
 
+    }
   }
 })

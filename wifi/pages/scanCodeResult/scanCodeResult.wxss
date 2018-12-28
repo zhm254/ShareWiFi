@@ -1,0 +1,28 @@
+.title {
+  text-align: center;
+  margin-top: 100rpx;
+}
+
+.unlock-button {
+  width: 50%;
+  margin-top: 60rpx;
+  background-color: #33ca01;
+  color: #fff;
+}
+
+.connectedWifi-view {
+  text-align: center;
+  padding-top: 40rpx;
+}
+
+.connectedWifi {
+  margin-top: 60rpx;
+  font-weight: bold;
+}
+
+.connectedWifi-button {
+  width: 50%;
+  margin-top: 60rpx;
+  background-color: #33ca01;
+  color: #fff;
+}

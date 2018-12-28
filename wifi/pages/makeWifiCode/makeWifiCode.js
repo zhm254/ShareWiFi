@@ -8,6 +8,11 @@ Page({
     wifiName: '',
     wifiPw: ''
   },
+  goMadeWiFiCode: function() {
+    wx.navigateTo({
+      url: '../madeWiFiCode/madeWiFiCode'
+    })
+  },
   inputChange: function(e) {
     // console.log(e);
     // console.log(this);
@@ -56,7 +61,7 @@ Page({
             //console.log(res);
             var WiFidata = res.data;
             wx.navigateTo({
-              url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName
+              url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName + '&wifiPw=' + this.data.wifiPw
             })
             this.data.wifiName = '';
             this.setData({
@@ -84,7 +89,7 @@ Page({
           //console.log(res);
           var WiFidata = res.data;
           wx.navigateTo({
-            url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName
+            url: '../WiFiCode/WiFiCode?WiFidata=' + JSON.stringify(WiFidata) + '&' + 'wifiName=' + this.data.wifiName + '&wifiPw=' + this.data.wifiPw
           })
           this.data.wifiName = '';
           this.setData({
@@ -117,7 +122,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**

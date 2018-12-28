@@ -1,4 +1,4 @@
-<view class='made-wifiCode'>
+<view class='made-wifiCode' bindtap='goMadeWiFiCode'>
   <view>已制作好的WiFi码</view>
   <view class='arrow'>></view>
 </view>

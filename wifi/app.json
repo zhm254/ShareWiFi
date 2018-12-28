@@ -1,12 +1,15 @@
 {
   "pages": [
     "pages/connectWifi/connectWifi",
-    "pages/unlock/unlock",
     "pages/makeWifiCode/makeWifiCode",
+    "pages/unlock/unlock",
     "pages/WiFiCode/WiFiCode",
     "pages/scanCodeEntered/scanCodeEntered",
     "pages/tologin/tologin",
-    "pages/madeWiFiCode/madeWiFiCode"
+    "pages/madeWiFiCode/madeWiFiCode",
+    "pages/shareEntered/shareEntered",
+    "pages/scanCodeResult/scanCodeResult",
+    "pages/webViewPage/webViewPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

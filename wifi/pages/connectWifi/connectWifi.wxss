@@ -68,7 +68,7 @@
   left: 0;
   z-index: 9999;
   background: #fff;
-  margin: -300rpx 105rpx;
+  margin: -328rpx 105rpx;
   border-radius: 36rpx;
 }
 
@@ -114,16 +114,25 @@ input-holder {
   line-height: 90rpx;
 }
 
-.btn-cancel {
+.btn-cancel-view {
   width: 50%;
-  color: #33ca01;
   text-align: center;
   border-right: 0.5px solid #dedede;
 }
 
-.btn-confirm {
-  width: 50%;
+.btn-style {
   color: #33ca01;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+}
+
+.btn-style::after {
+  border: none;
+}
+
+.btn-confirm-view {
+  width: 50%;
   text-align: center;
   border-left: 0.5px solid #dedede;
 }

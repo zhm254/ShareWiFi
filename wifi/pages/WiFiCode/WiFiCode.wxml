@@ -6,7 +6,7 @@
   <view class='hint-text'>分享给好友或者保存到相册打印出来吧</view>
   <view class='button-container'>
     <button bindtap='saveCode' data-wifiCode='{{wifiCode}}'>保存</button>
-    <button>分享</button>
+    <button open-type='share'>分享</button>
     <button>删除</button>
   </view>
 </view>

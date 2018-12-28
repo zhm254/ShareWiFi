@@ -12,7 +12,8 @@ Page({
     ssid: '',
     inputPassword: '',
     WiFiPassword: '',
-    wifi: ''
+    wifi: '',
+    isdisabled: false
   },
   unlockWiFi: function() {
     wx.navigateTo({
@@ -58,6 +59,9 @@ Page({
     //console.log(typeof(this.data.WiFiPassword));
     wx.startWifi({
       success: (res) => {
+        wx.showLoading({
+          title: '连接中'
+        })
         //console.log(res.errMsg);
         wx.connectWifi({
           SSID: e.currentTarget.dataset.wifi.SSID,
@@ -84,7 +88,7 @@ Page({
                   },
                   method: 'POST',
                   success: (res) => {
-                    console.log(res)
+                    //console.log(res)
                   }
                 })
                 //console.log(this);
@@ -109,7 +113,8 @@ Page({
             })
           },
           fail: () => {
-            console.log("fail");
+            wx.hideLoading();
+            //console.log("fail");
           }
 
         })
@@ -120,13 +125,43 @@ Page({
 
   },
   inputChange: function(e) {
+    // console.log(typeof(e.detail.value));
+    // console.log(e.detail.value.length);
+    if (e.detail.value.length > 0 && e.detail.value.length < 8) {
+      this.data.isdisabled = true;
+      this.setData({
+        isdisabled: this.data.isdisabled
+      });
+    } else {
+      this.data.isdisabled = false;
+      this.setData({
+        isdisabled: this.data.isdisabled
+      });
+    }
     this.data.inputPassword = e.detail.value;
     this.setData({
       inputPassword: this.data.inputPassword
     })
     //console.log(this.data.inputPassword);
+
   },
   unlockMore: function() {
+    //console.log(this.data.wifiList);
+    if (this.data.wifiList != []) {
+      this.data.wifiList = [];
+      this.setData({
+        wifiList: this.data.wifiList
+      });
+      //console.log(this.data.wifiList);
+    }
+    //console.log(getApp().globalData.wifiList);
+    if (getApp().globalData.wifiList != []) {
+      getApp().globalData.wifiList = [];
+      this.setData({
+        wifiList: getApp().globalData.wifiList
+      });
+      //console.log(getApp().globalData.wifiList);
+    }
     wx.navigateTo({
       url: '../unlock/unlock'
     })
@@ -198,6 +233,8 @@ Page({
             });
           }
         }
+        //console.log(this.data.wifiList.length);
+        // console.log(this.data.wifiList);
         //console.log("fail");
         if (this.data.wifiList.length === 0) {
           this.data.flag = 2;

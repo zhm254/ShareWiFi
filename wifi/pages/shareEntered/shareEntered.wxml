@@ -1,0 +1,9 @@
+<official-account></official-account>
+<view class='outer-container'>
+  <view class='welcome-text'>欢迎体验扫码连WiFi</view>
+  <view>发现WiFi</view>
+  <view class='wifi-name'>{{wifiName}}</view>
+  <view>
+    <button class='connect-button' bindtap="connectWiFi">立即连接</button>
+  </view>
+</view>
