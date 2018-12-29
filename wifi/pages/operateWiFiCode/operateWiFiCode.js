@@ -1,38 +1,11 @@
+// pages/operateWiFiCode/operateWiFiCode.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wifiCode: '',
-    wifiId: '',
-    wifiName: '',
-    wifiPw: ''
-  },
-  deleteCode: function() {
-    wx.showModal({
-      title: '扫码连WiFi提醒您',
-      content: '确定删除该WiFi码？',
-      confirmColor: '#33CA01',
-      success: (res) => {
-        if (res.confirm) {
-          wx.request({
-            url: 'https://wifi.cou8123.cn/api/wxapp/public/delwifi',
-            data: {
-              id: this.data.wifiId,
-            },
-            method: 'POST',
-            success: (res) => {
-              //console.log(res);
-              wx.navigateBack({
-                delta: 1
-              })
-            }
-          })
-
-        }
-      }
-    })
+    wifi: ''
   },
   saveCode: function(e) {
     //console.log(e);
@@ -78,33 +51,40 @@ Page({
       }
     })
   },
+  deleteCode: function() {
+    wx.showModal({
+      title: '扫码连WiFi提醒您',
+      content: '确定删除该WiFi码？',
+      confirmColor: '#33CA01',
+      success: (res) => {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://wifi.cou8123.cn/api/wxapp/public/delwifi',
+            data: {
+              id: this.data.wifi.id,
+            },
+            method: 'POST',
+            success: (res) => {
+              //console.log(res);
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(options);
-    // console.log(JSON.parse(options.WiFidata));
-    // console.log(options.wifiName);
-    // console.log((JSON.parse(options.WiFidata)).data.data);
-    // console.log(typeof((JSON.parse(options.WiFidata)).data.data));
-    this.data.wifiCode = (JSON.parse(options.WiFidata)).data.data;
+    this.data.wifi = JSON.parse(options.wifi);
     this.setData({
-      wifiCode: this.data.wifiCode
+      wifi: this.data.wifi
     });
-    this.data.wifiId = (JSON.parse(options.WiFidata)).data.id;
-    this.setData({
-      wifiId: this.data.wifiId
-    });
-    // console.log(this.data.wifiId);
-    // console.log(typeof(this.data.wifiId));
-    this.data.wifiName = options.wifiName;
-    this.setData({
-      wifiName: this.data.wifiName
-    });
-    this.data.wifiPw = options.wifiPw;
-    this.setData({
-      wifiPw: this.data.wifiPw
-    });
+    //console.log(this.data.wifi);
   },
 
   /**
@@ -155,7 +135,7 @@ Page({
   onShareAppMessage: function(res) {
     return {
       title: '邀请你连WiFi',
-      path: '/pages/shareEntered/shareEntered?wifiName=' + this.data.wifiName + '&wifiPw=' + this.data.wifiPw,
+      path: '/pages/shareEntered/shareEntered?wifiName=' + this.data.wifi.ssid + '&wifiPw=' + this.data.wifi.pw,
       success: (res) => {
         wx.showToast({
           title: "分享成功",

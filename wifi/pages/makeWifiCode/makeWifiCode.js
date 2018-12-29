@@ -48,13 +48,15 @@ Page({
           duration: 2000
         })
       } else if (this.data.wifiPw.length >= 8) {
+        var openid = wx.getStorageSync('openid');
+        //console.log(openid);
         wx.request({
           url: 'https://wifi.cou8123.cn/api/wxapp/public/getWXACode',
           data: {
             ssid: this.data.wifiName,
             password: this.data.wifiPw,
             bssid: '', //可选的
-            user_id: '', //可选的，openid
+            user_id: openid, //openid
           },
           method: 'POST',
           success: (res) => {
@@ -76,13 +78,15 @@ Page({
 
       }
     } else if (this.data.wifiName != '' && this.data.wifiPw.length === 0) {
+      var openid = wx.getStorageSync('openid');
+      //console.log(openid);
       wx.request({
         url: 'https://wifi.cou8123.cn/api/wxapp/public/getWXACode',
         data: {
           ssid: this.data.wifiName,
           password: this.data.wifiPw,
           bssid: '', //可选的
-          user_id: '', //可选的，openid
+          user_id: openid, //openid
         },
         method: 'POST',
         success: (res) => {

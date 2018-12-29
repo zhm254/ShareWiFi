@@ -1,1 +1,9 @@
-
+<view wx:if="{{wifiList.length===0}}" class='explain-text'>暂无已制作好的WiFi码</view>
+<view class='wifi-list'>
+  <view wx:for="{{wifiList}}" class='wifi-item' wx:key="index" bindtap='goOperateWiFiCode' data-wifi='{{item}}'>
+    <view class='wifi-name'>{{item.ssid}}</view>
+    <view>
+      <image src='{{item.img}}' class='wifi-code'></image>
+    </view>
+  </view>
+</view>

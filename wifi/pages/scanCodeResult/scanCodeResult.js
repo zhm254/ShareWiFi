@@ -46,7 +46,7 @@ Page({
       wx.reLaunch({
         url: '../webViewPage/webViewPage?id=' + id
       })
-    }, 500, this.data.scene)
+    }, 3000, this.data.scene)
     wx.getConnectedWifi({
       success: (res) => {
         //console.log(res);

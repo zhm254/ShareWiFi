@@ -1,0 +1,33 @@
+page {
+  background-color: #f8f8f8;
+}
+
+.wifiCode-container {
+  text-align: center;
+  margin-top: 40rpx;
+}
+
+.wifiCode {
+  width: 520rpx;
+  height: 520rpx;
+}
+
+.wifi-name {
+  text-align: center;
+  margin: 40rpx 0;
+  font-weight: bold;
+}
+
+.hint-text {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container button {
+  background-color: #33ca01;
+  color: white;
+}

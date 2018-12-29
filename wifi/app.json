@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/connectWifi/connectWifi",
     "pages/makeWifiCode/makeWifiCode",
-    "pages/unlock/unlock",
+    "pages/madeWiFiCode/madeWiFiCode",
+    "pages/operateWiFiCode/operateWiFiCode",
     "pages/WiFiCode/WiFiCode",
+    "pages/connectWifi/connectWifi",
+    "pages/unlock/unlock",
     "pages/scanCodeEntered/scanCodeEntered",
     "pages/tologin/tologin",
-    "pages/madeWiFiCode/madeWiFiCode",
     "pages/shareEntered/shareEntered",
     "pages/scanCodeResult/scanCodeResult",
     "pages/webViewPage/webViewPage"

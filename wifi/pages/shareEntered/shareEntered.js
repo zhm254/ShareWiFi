@@ -26,19 +26,21 @@ Page({
                 wx.showToast({
                   title: '连接成功',
                   icon: 'success',
-                  duration: 3000
+                  duration: 2000
                 })
                 wx.switchTab({
                   url: '../connectWifi/connectWifi'
                 })
               },
               fail: () => {
-                wx.hideLoading();
-                setTimeout(() => {
-                  wx.switchTab({
-                    url: '../connectWifi/connectWifi'
-                  })
-                }, 3000)
+                wx.showToast({
+                  title: '连接失败',
+                  icon: 'none',
+                  duration: 2000
+                })
+                wx.switchTab({
+                  url: '../connectWifi/connectWifi'
+                })
               }
             })
           }

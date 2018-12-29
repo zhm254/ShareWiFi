@@ -1,11 +1,11 @@
 <view>
   <view class='wifiCode-container'>
-    <image src='{{wifiCode}}' class='wifiCode'></image>
+    <image src='{{wifi.img}}' class='wifiCode'></image>
   </view>
-  <view class='wifi-name'>{{wifiName}}</view>
+  <view class='wifi-name'>{{wifi.ssid}}</view>
   <view class='hint-text'>分享给好友或者保存到相册打印出来吧</view>
   <view class='button-container'>
-    <button bindtap='saveCode' data-wifiCode='{{wifiCode}}'>保存</button>
+    <button bindtap='saveCode' data-wifiCode='{{wifi.img}}'>保存</button>
     <button open-type='share'>分享</button>
     <button bindtap='deleteCode'>删除</button>
   </view>
