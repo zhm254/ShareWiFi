@@ -17,10 +17,10 @@ Page({
           SSID: this.data.ssid,
           password: this.data.password,
           success: (res) => {
+            //console.log(res);
             wx.showLoading({
               title: '连接中',
             })
-            //console.log(res);
             wx.getConnectedWifi({
               success: () => {
                 //wx.hideLoading();
@@ -30,10 +30,10 @@ Page({
                   duration: 2000
                 })
                 wx.redirectTo({
-                  url: '../scanCodeResult/scanCodeResult？scene=' + this.data.scene
+                  url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
                 })
               },
-              fail: () => {
+              fail: (res) => {
                 wx.showToast({
                   title: '连接失败',
                   icon: 'none',
@@ -44,6 +44,9 @@ Page({
                 })
               }
             })
+          },
+          fail: (res) => {
+            //console.log(res);
           }
         })
       }
