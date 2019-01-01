@@ -1,16 +1,17 @@
 {
   "pages": [
+    "pages/connectWifi/connectWifi",
+    "pages/scanCodeResult/scanCodeResult",
     "pages/makeWifiCode/makeWifiCode",
     "pages/madeWiFiCode/madeWiFiCode",
     "pages/operateWiFiCode/operateWiFiCode",
     "pages/WiFiCode/WiFiCode",
-    "pages/connectWifi/connectWifi",
     "pages/unlock/unlock",
     "pages/scanCodeEntered/scanCodeEntered",
     "pages/tologin/tologin",
     "pages/shareEntered/shareEntered",
-    "pages/scanCodeResult/scanCodeResult",
-    "pages/webViewPage/webViewPage"
+    "pages/webViewPage/webViewPage",
+    "pages/AndroidWifiList/AndroidWifiList"
   ],
   "window": {
     "backgroundTextStyle": "light",

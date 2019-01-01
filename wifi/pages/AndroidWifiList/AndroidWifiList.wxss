@@ -1,0 +1,109 @@
+.ssid-style {
+  background-color: #ccc;
+  margin: 10rpx 10rpx 0 10rpx;
+  padding-left: 10rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.ssid-hover {
+  background-color: #33ca01;
+  color: #fff;
+  margin: 10rpx 10rpx 0 10rpx;
+  padding-left: 10rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.choose-wifi {
+  text-align: center;
+}
+
+.unlock-more {
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 30rpx auto;
+  background-color: #33ca01;
+  color: #fff;
+  font-size: 40rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.modal-dialog {
+  width: 560rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+  margin: -328rpx 105rpx;
+  border-radius: 36rpx;
+}
+
+.modal-title {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #000;
+  text-align: center;
+}
+
+.modal-content {
+  padding: 50rpx 32rpx;
+}
+
+.modal-input {
+  background: #fff;
+  border-bottom: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 32rpx;
+}
+
+.input {
+  width: 100%;
+  height: 82rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+
+input-holder {
+  color: #666;
+  font-size: 32rpx;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  border-top: 1px solid #dedede;
+  font-size: 36rpx;
+  line-height: 90rpx;
+}
+
+.btn-cancel-view {
+  width: 50%;
+  text-align: center;
+  border-right: 0.5px solid #dedede;
+}
+
+.btn-style {
+  color: #33ca01;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+}
+
+.btn-style::after {
+  border: none;
+}
+
+.btn-confirm-view {
+  width: 50%;
+  text-align: center;
+  border-left: 0.5px solid #dedede;
+}

@@ -10,47 +10,122 @@ Page({
     scene: ''
   },
   connectWiFi: function() {
-    wx.startWifi({
+    wx.getSystemInfo({
       success: (res) => {
         //console.log(res);
-        wx.connectWifi({
-          SSID: this.data.ssid,
-          password: this.data.password,
-          success: (res) => {
-            //console.log(res);
-            wx.showLoading({
-              title: '连接中',
-            })
-            wx.getConnectedWifi({
-              success: () => {
-                //wx.hideLoading();
-                wx.showToast({
-                  title: '连接成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-                wx.redirectTo({
-                  url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
-                })
-              },
-              fail: (res) => {
-                wx.showToast({
-                  title: '连接失败',
-                  icon: 'none',
-                  duration: 2000
-                })
-                wx.redirectTo({
-                  url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
-                })
-              }
-            })
-          },
-          fail: (res) => {
-            //console.log(res);
-          }
-        })
+        //console.log(res.platform);
+        //console.log(typeof(res.platform));
+        if (res.platform === 'android') {
+          wx.startWifi({
+            success: (res) => {
+              //console.log(res);
+              //console.log(this.data.ssid);
+              //console.log(this.data.password);
+              wx.showLoading({
+                title: '连接中',
+              })
+              wx.connectWifi({
+                SSID: this.data.ssid,
+                password: this.data.password,
+                success: (res) => {
+                  //console.log(res)
+                  wx.getConnectedWifi({
+                    success: () => {
+                      //wx.hideLoading();
+                      wx.showToast({
+                        title: '连接成功',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                      wx.redirectTo({
+                        url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
+                      })
+                    },
+                    fail: (res) => {
+                      //cososle.log(res);
+                    }
+                  })
+                },
+                fail: (res) => {
+                  // console.log(res.errCode);
+                  // console.log(typeof(res.errCode));
+                  // console.log(res);
+                  if (res.errCode === 12005) {
+                    wx.showToast({
+                      title: '请先打开WiFi开关',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  } else {
+                    wx.showToast({
+                      title: '连接失败',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                    wx.redirectTo({
+                      url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
+                    })
+                  }
+                }
+              })
+            },
+            fail: (res) => {
+              //console.log(res);
+            }
+          })
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) > 11) {
+          //console.log(parseInt(res.system.substr(4)));
+          wx.startWifi({
+            success: (res) => {
+              //console.log(res);
+              wx.connectWifi({
+                SSID: this.data.ssid,
+                password: this.data.password,
+                success: (res) => {
+                  //console.log(res);
+                  wx.showLoading({
+                    title: '连接中',
+                  })
+                  wx.getConnectedWifi({
+                    success: () => {
+                      //wx.hideLoading();
+                      wx.showToast({
+                        title: '连接成功',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                      wx.redirectTo({
+                        url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
+                      })
+                    },
+                    fail: (res) => {
+                      wx.showToast({
+                        title: '连接失败',
+                        icon: 'none',
+                        duration: 2000
+                      })
+                      wx.redirectTo({
+                        url: '../scanCodeResult/scanCodeResult?scene=' + this.data.scene
+                      })
+                    }
+                  })
+                },
+                fail: (res) => {
+                  //console.log(res);
+                }
+              })
+            }
+          })
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) <= 11) {
+          wx.showToast({
+            title: '请升级到ios11以上版本',
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
     })
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,7 +160,6 @@ Page({
         // console.log(typeof(this.data.password));
       }
     })
-
   },
 
   /**

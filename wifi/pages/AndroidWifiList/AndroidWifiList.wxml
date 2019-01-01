@@ -1,0 +1,24 @@
+<view>
+  <view class='choose-wifi'>请点击你想要连接的WiFi</view>
+  <view class='unlock-more' bindtap="unlockMore">识别更多解锁WiFi</view>
+  <view wx:for="{{wifiList}}" wx:key="index">
+    <view class='ssid-style' bindtap="connectWiFi" data-item='{{item}}' hover-class='ssid-hover' hover-stay-time='50'>{{item.SSID}}
+    </view>
+  </view>
+</view>
+<view class="modal-dialog" wx:if="{{showModal===true}}">
+  <view class="modal-title">{{ssid}}</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" class="input" placeholder='请输入WiFi密码' bindinput='inputChange'></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel-view">
+      <button bindtap="cancel" class='btn-style'>取消</button>
+    </view>
+    <view class="btn-confirm-view">
+      <button bindtap="confirm" data-wifi='{{wifi}}' class='btn-style' disabled='{{isdisabled}}'>确定</button>
+    </view>
+  </view>
+</view>

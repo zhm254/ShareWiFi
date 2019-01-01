@@ -16,8 +16,46 @@ Page({
     isdisabled: false
   },
   unlockWiFi: function() {
-    wx.navigateTo({
-      url: '../unlock/unlock'
+    wx.getSystemInfo({
+      success: (res) => {
+        //console.log(res);
+        //console.log(res.platform);
+        if (res.platform === 'android') {
+          wx.startWifi({
+            success: (res) => {
+              wx.getWifiList({
+                success: (res) => {
+                  //console.log(res);
+                  wx.navigateTo({
+                    url: '../AndroidWifiList/AndroidWifiList'
+                  })
+                },
+                fail: (res) => {
+                  //console.log(res);
+                  if (res.errCode === 12005) {
+                    wx.showToast({
+                      title: '请先打开WiFi开关',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
+                }
+              })
+            }
+          })
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) > 11) {
+          //console.log(parseInt(res.system.substr(4)));
+          wx.navigateTo({
+            url: '../unlock/unlock'
+          })
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) <= 11) {
+          wx.showToast({
+            title: '请升级到ios11以上版本',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
     })
   },
   connectWiFi: function(e) {
@@ -33,7 +71,6 @@ Page({
     this.setData({
       showModal: this.data.showModal
     });
-
   },
   cancel: function() {
     this.data.showModal = false;
@@ -70,6 +107,12 @@ Page({
             //console.log(res.errMsg);
             wx.getConnectedWifi({
               success: () => {
+                wx.showToast({
+                  title: 'WiFi连接成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+                this.onShow();
                 var ssid = e.currentTarget.dataset.wifi.SSID;
                 var bssid = e.currentTarget.dataset.wifi.BSSID;
                 var password = this.data.WiFiPassword;
@@ -91,13 +134,6 @@ Page({
                     //console.log(res)
                   }
                 })
-                //console.log(this);
-                wx.showToast({
-                  title: 'WiFi连接成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-                this.onShow();
                 this.data.WiFiPassword = '';
                 this.setData({
                   WiFiPassword: this.data.WiFiPassword
@@ -167,8 +203,20 @@ Page({
     })
   },
   changeWiFi: function() {
-    wx.navigateTo({
-      url: '../unlock/unlock'
+    wx.getSystemInfo({
+      success: (res) => {
+        //console.log(res);
+        //console.log(res.platform);
+        if (res.platform === 'android') {
+          wx.navigateTo({
+            url: '../AndroidWifiList/AndroidWifiList'
+          })
+        } else if (res.platform === 'ios') {
+          wx.navigateTo({
+            url: '../unlock/unlock'
+          })
+        }
+      }
     })
   },
 
@@ -192,62 +240,90 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    //console.log("onshow");
-    wx.getConnectedWifi({
+    wx.getSystemInfo({
       success: (res) => {
         //console.log(res);
-        this.data.flag = 1;
-        this.setData({
-          flag: this.data.flag
-        });
-        //console.log(this.data.flag);
-        this.data.connectedWifi = res.wifi.SSID;
-        this.setData({
-          connectedWifi: this.data.connectedWifi
-        });
-        //console.log(this.data.wifiList);
-        if (this.data.wifiList != []) {
-          this.data.wifiList = [];
-          this.setData({
-            wifiList: this.data.wifiList
-          });
-          //console.log(this.data.wifiList);
-        }
-        //console.log(getApp().globalData.wifiList);
-        if (getApp().globalData.wifiList != []) {
-          getApp().globalData.wifiList = [];
-          this.setData({
-            wifiList: getApp().globalData.wifiList
-          });
-          //console.log(getApp().globalData.wifiList);
-        }
+        //console.log(res.platform);
+        if (res.platform === 'android') {
+          wx.getConnectedWifi({
+            success: (res) => {
+              //console.log(res);
+              this.data.flag = 1;
+              this.setData({
+                flag: this.data.flag
+              });
+              //console.log(this.data.flag);
+              this.data.connectedWifi = res.wifi.SSID;
+              this.setData({
+                connectedWifi: this.data.connectedWifi
+              });
+            },
+            fail: () => {
+              this.data.flag = 2;
+              this.setData({
+                flag: this.data.flag
+              });
+            }
+          })
+        } else if (res.platform === 'ios') {
+          wx.getConnectedWifi({
+            success: (res) => {
+              //console.log(res);
+              this.data.flag = 1;
+              this.setData({
+                flag: this.data.flag
+              });
+              //console.log(this.data.flag);
+              this.data.connectedWifi = res.wifi.SSID;
+              this.setData({
+                connectedWifi: this.data.connectedWifi
+              });
+              //console.log(this.data.wifiList);
+              if (this.data.wifiList != []) {
+                this.data.wifiList = [];
+                this.setData({
+                  wifiList: this.data.wifiList
+                });
+                //console.log(this.data.wifiList);
+              }
+              //console.log(getApp().globalData.wifiList);
+              if (getApp().globalData.wifiList != []) {
+                getApp().globalData.wifiList = [];
+                this.setData({
+                  wifiList: getApp().globalData.wifiList
+                });
+                //console.log(getApp().globalData.wifiList);
+              }
 
-      },
-      fail: () => {
-        var app = getApp();
-        for (var i = 0; i < app.globalData.wifiList.length; i++) {
-          if (app.globalData.wifiList[i].SSID != '') {
-            this.data.wifiList.push(app.globalData.wifiList[i]);
-            this.setData({
-              wifiList: this.data.wifiList
-            });
-          }
+            },
+            fail: () => {
+              var app = getApp();
+              for (var i = 0; i < app.globalData.wifiList.length; i++) {
+                if (app.globalData.wifiList[i].SSID != '') {
+                  this.data.wifiList.push(app.globalData.wifiList[i]);
+                  this.setData({
+                    wifiList: this.data.wifiList
+                  });
+                }
+              }
+              //console.log(this.data.wifiList.length);
+              // console.log(this.data.wifiList);
+              //console.log("fail");
+              if (this.data.wifiList.length === 0) {
+                this.data.flag = 2;
+                this.setData({
+                  flag: this.data.flag
+                });
+              } else {
+                this.data.flag = 3;
+                this.setData({
+                  flag: this.data.flag
+                });
+              }
+              //console.log(this.data.flag);
+            }
+          })
         }
-        //console.log(this.data.wifiList.length);
-        // console.log(this.data.wifiList);
-        //console.log("fail");
-        if (this.data.wifiList.length === 0) {
-          this.data.flag = 2;
-          this.setData({
-            flag: this.data.flag
-          });
-        } else {
-          this.data.flag = 3;
-          this.setData({
-            flag: this.data.flag
-          });
-        }
-        //console.log(this.data.flag);
       }
     })
   },

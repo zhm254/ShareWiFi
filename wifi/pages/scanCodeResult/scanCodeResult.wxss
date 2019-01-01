@@ -1,4 +1,4 @@
-.title {
+/* .title {
   text-align: center;
   margin-top: 100rpx;
 }
@@ -25,4 +25,16 @@
   margin-top: 60rpx;
   background-color: #33ca01;
   color: #fff;
+} */
+
+.connect-result {
+  text-align: center;
+  margin: 200rpx 0 100rpx 0;
+  font-size: 46rpx;
+}
+
+.go-home-page {
+  width: 60%;
+  background-color: #33ca01;
+  color: white;
 }

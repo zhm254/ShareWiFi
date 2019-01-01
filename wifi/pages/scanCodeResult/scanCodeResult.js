@@ -7,17 +7,14 @@ Page({
   data: {
     scene: '',
     flag: '',
-    connectedWifi: ''
+    //connectedWifi: ''
+    timeoutId: ''
   },
-  unlockWiFi: function() {
-    wx.navigateTo({
-      url: '../unlock/unlock'
+  goHomePage: function() {
+    wx.reLaunch({
+      url: '../connectWifi/connectWifi'
     })
-  },
-  changeWiFi: function() {
-    wx.navigateTo({
-      url: '../unlock/unlock'
-    })
+    clearTimeout(this.data.timeoutId)
   },
 
   /**
@@ -42,11 +39,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    setTimeout((id) => {
+    this.data.timeoutId = setTimeout((id) => {
       wx.reLaunch({
         url: '../webViewPage/webViewPage?id=' + id
       })
-    }, 3000, this.data.scene)
+    }, 2000, this.data.scene)
+    this.setData({
+      timeoutId: this.data.timeoutId
+    });
     wx.getConnectedWifi({
       success: (res) => {
         //console.log(res);
@@ -55,10 +55,10 @@ Page({
           flag: this.data.flag
         });
         //console.log(this.data.flag);
-        this.data.connectedWifi = res.wifi.SSID;
-        this.setData({
-          connectedWifi: this.data.connectedWifi
-        });
+        // this.data.connectedWifi = res.wifi.SSID;
+        // this.setData({
+        //   connectedWifi: this.data.connectedWifi
+        // });
       },
       fail: () => {
         this.data.flag = 2;
