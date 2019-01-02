@@ -72,7 +72,7 @@ Page({
               //console.log(res);
             }
           })
-        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) > 11) {
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) >= 11) {
           wx.startWifi({
             success: (res) => {
               //console.log(res);
@@ -111,9 +111,9 @@ Page({
               })
             }
           })
-        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) <= 11) {
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) < 11) {
           wx.showToast({
-            title: '请升级到ios11以上版本',
+            title: '请升级到ios11或以上版本',
             icon: 'none',
             duration: 2000
           })

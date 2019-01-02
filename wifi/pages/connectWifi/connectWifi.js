@@ -43,14 +43,14 @@ Page({
               })
             }
           })
-        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) > 11) {
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) >= 11) {
           //console.log(parseInt(res.system.substr(4)));
           wx.navigateTo({
             url: '../unlock/unlock'
           })
-        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) <= 11) {
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) < 11) {
           wx.showToast({
-            title: '请升级到ios11以上版本',
+            title: '请升级到ios11或以上版本',
             icon: 'none',
             duration: 2000
           })
@@ -211,9 +211,15 @@ Page({
           wx.navigateTo({
             url: '../AndroidWifiList/AndroidWifiList'
           })
-        } else if (res.platform === 'ios') {
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) >= 11) {
           wx.navigateTo({
             url: '../unlock/unlock'
+          })
+        } else if (res.platform === 'ios' && (parseInt(res.system.substr(4))) < 11) {
+          wx.showToast({
+            title: '请升级到ios11或以上版本',
+            icon: 'none',
+            duration: 2000
           })
         }
       }
